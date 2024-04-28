@@ -1,0 +1,22 @@
+{
+  "name": "day-1",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently 'pnpm:dev:*'",
+    "dev:client": "pnpm --filter client dev",
+    "dev:server": "pnpm --filter server dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "prisma": "^5.13.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.13.0",
+    "zod": "^3.23.4"
+  }
+}
