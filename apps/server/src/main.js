@@ -2,9 +2,11 @@ import "dotenv/config";
 import express from "express";
 import { httpExceptionHandler } from "./middlewares/http-exception-handler";
 import postsController from "./posts/posts.controller";
+import cors from "cors";
 
 const app = express();
 
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.get("/", (req, res) => {
