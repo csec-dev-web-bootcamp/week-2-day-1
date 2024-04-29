@@ -3,6 +3,7 @@ import express from "express";
 import { httpExceptionHandler } from "./middlewares/http-exception-handler";
 import postsController from "./posts/posts.controller";
 import cors from "cors";
+import { corsOptions } from "./constants/cors-options";
 
 const app = express();
 

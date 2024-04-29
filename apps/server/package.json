@@ -4,6 +4,7 @@
   "description": "My webpack project",
   "scripts": {
     "dev": "concurrently 'webpack --watch' 'nodemon dist/main.js'",
+    "develop": "nodemon dist/main.js",
     "build": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
