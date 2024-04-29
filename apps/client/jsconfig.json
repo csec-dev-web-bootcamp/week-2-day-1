@@ -4,10 +4,9 @@
     "paths": {
       "@app/client/*": ["apps/client/src/*"],
       "@app/client": ["apps/client/src"],
-      "@app/server/*": ["apps/server/src/*"],
-      "@db/prisma": ["prisma/client"],
-      "@lib/common/*": ["libs/common/src/*"],
       "@lib/common": ["libs/common/src"]
     }
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }

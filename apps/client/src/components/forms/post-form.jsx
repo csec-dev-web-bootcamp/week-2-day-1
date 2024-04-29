@@ -15,22 +15,30 @@ import {
 } from "@app/client/components/ui/form";
 import { Input } from "@app/client/components/ui/input";
 import { createPostSchema } from "@lib/common";
+import { Textarea } from "../ui/textarea";
+import useMutation from "@app/client/hooks/use-mutation";
+import { createPost } from "@app/client/data/post.data";
 
 export default function PostForm() {
+  const { startMutation, isMutating } = useMutation();
   const form = useForm({
     resolver: zodResolver(createPostSchema),
     defaultValues: {
       title: "",
+      content: "",
     },
   });
-
+  console.log({ isMutating });
   function onSubmit(values) {
-    console.log(values);
+    startMutation(async () => {
+      const result = await createPost(values);
+      form.reset();
+    });
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
         <FormField
           control={form.control}
           name="title"
@@ -47,7 +55,25 @@ export default function PostForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <FormField
+          control={form.control}
+          name="content"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Content</FormLabel>
+              <FormControl>
+                <Textarea placeholder="content.." {...field} />
+              </FormControl>
+              <FormDescription>
+                This is your public display name.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit" >
+          {isMutating ? "Submitting..." : "Submit"}
+        </Button>
       </form>
     </Form>
   );
