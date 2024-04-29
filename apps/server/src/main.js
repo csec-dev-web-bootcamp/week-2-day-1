@@ -1,14 +1,13 @@
-import express from "express";
-import postsController from "./posts/posts.controller";
 import "dotenv/config";
-import { HttpException, httpExceptionHandler } from "./http-exception";
+import express from "express";
+import { httpExceptionHandler } from "./middlewares/http-exception-handler";
+import postsController from "./posts/posts.controller";
 
 const app = express();
 
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  throw new HttpException({ message: "server error" }, 400);
   return res.json({
     message: "Hello",
   });

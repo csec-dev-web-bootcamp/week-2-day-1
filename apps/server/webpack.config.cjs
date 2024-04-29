@@ -22,7 +22,6 @@ const config = {
       "@/prisma/client": path.resolve(__dirname, "../../prisma/client"),
     },
   },
-  devtool: false,
   module: {
     rules: [
       {
@@ -35,6 +34,7 @@ const config = {
 
 module.exports = () => {
   if (isProduction) {
+    config.devtool = false;
     config.mode = "production";
   } else {
     config.mode = "development";

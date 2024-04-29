@@ -1,5 +1,5 @@
 import { createPostSchema, formatZodError } from "@lib/common";
-import { HttpException } from "../http-exception";
+import { HttpException } from "../helpers/http-exception";
 
 export function createPostPipe(req, res, next) {
   const data = req.body;
@@ -7,7 +7,7 @@ export function createPostPipe(req, res, next) {
   if (!result.success) {
     throw new HttpException(formatZodError(result.error), 400);
   }
-  req.body.data = result.data;
+  req.body = result.data;
   next();
 }
 
@@ -17,6 +17,6 @@ export function updatePostPipe(req, res, next) {
     if (!result.success) {
       throw new HttpException(formatZodError(result.error), 400);
     }
-    req.body.data = result.data;
+    req.body = result.data;
     next();
   }

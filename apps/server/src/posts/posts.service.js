@@ -1,8 +1,8 @@
-import prisma from "../prisma";
+import prisma from "../helpers/prisma-client";
 
 export async function createPost(data) {
   const post = await prisma.post.create({
-    data: result.data,
+    data: data,
   });
   return post;
 }
@@ -20,7 +20,7 @@ export async function getOnePost(id) {
 export async function updatePost(id, data) {
   const post = await prisma.post.update({
     where: { id },
-    data: result.data,
+    data: data,
   });
   return post;
 }
