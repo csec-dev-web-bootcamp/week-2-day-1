@@ -11,7 +11,11 @@ const config = {
     clean: true,
   },
   target: "node",
-  externals: [nodeExternals({})],
+  externals: [
+    nodeExternals({
+      additionalModuleDirs: ["../../node_modules"],
+    }),
+  ],
   resolve: {
     alias: {
       "@lib/common": path.resolve(__dirname, "../../libs/common/src"),
