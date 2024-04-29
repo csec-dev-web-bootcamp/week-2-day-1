@@ -1,5 +1,12 @@
 import express from "express";
-import { createPost, deletePost, getManyPosts, getOnePost, updatePost } from "./posts.service";
+import {
+  createPost,
+  deletePost,
+  getManyPosts,
+  getOnePost,
+  updatePost,
+} from "./posts.service";
+import { createPostPipe, updatePostPipe } from "./post.pipe";
 
 const postsController = express.Router();
 
@@ -8,7 +15,7 @@ postsController.get("/", async (req, res) => {
   return res.json(posts);
 });
 
-postsController.post("/", async (req, res) => {
+postsController.post("/", createPostPipe, async (req, res) => {
   const data = req.body;
   const post = await createPost(data);
   return res.json(post);
@@ -20,7 +27,7 @@ postsController.get("/:id", async (req, res) => {
   return res.json(post);
 });
 
-postsController.put("/:id", async (req, res) => {
+postsController.put("/:id", updatePostPipe, async (req, res) => {
   const data = req.body;
   const { id } = req.params;
   const post = await updatePost(+id, data);

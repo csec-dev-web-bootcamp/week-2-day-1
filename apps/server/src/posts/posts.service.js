@@ -1,11 +1,6 @@
-import { createPostSchema } from "@lib/common";
 import prisma from "../prisma";
 
 export async function createPost(data) {
-  const result = createPostSchema.safeParse(data);
-  if (!result.success) {
-    return res.status(400).json({ error: result.error });
-  }
   const post = await prisma.post.create({
     data: result.data,
   });
@@ -23,10 +18,6 @@ export async function getOnePost(id) {
 }
 
 export async function updatePost(id, data) {
-  const result = createPostSchema.safeParse(data);
-  if (!result.success) {
-    return res.status(400).json({ error: result.error });
-  }
   const post = await prisma.post.update({
     where: { id },
     data: result.data,
